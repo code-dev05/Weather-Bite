@@ -12,3 +12,14 @@ body {
   background-position: center center;
   background-repeat: no-repeat;
 }
+
+body::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #FDE0474D;
+  z-index: 100;
+}
