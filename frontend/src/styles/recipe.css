@@ -1,0 +1,49 @@
+.recipe {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 75px;
+  height: auto;
+}
+
+.recipe > h1 {
+  color: #db0a0a;
+  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-width: 1px;
+  font-weight: bolder;
+  font-size: 96px;
+  margin: 0;
+  z-index: 1000;
+}
+
+iframe {
+  z-index: 100;
+  position: relative;
+}
+
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 10px;
+  z-index: 100;
+}
+
+.bottom div {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: bold;
+}
+
+.bottom div:first-of-type {
+    border-left: 2px solid black;
+}
+
+.bottom div h1 {
+  font-size: 50px;
+}
+
+.bottom p {
+  font-size: 30px;
+}

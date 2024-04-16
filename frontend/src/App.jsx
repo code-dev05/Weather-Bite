@@ -5,6 +5,9 @@ import Navbar from "./components/navbar.jsx";
 import About from "./pages/About.jsx";
 import Auth from "./pages/Auth.jsx";
 import Team from "./pages/Team.jsx";
+import Suggestions from "./pages/Suggestions.jsx";
+import Recipe from "./pages/Recipe.jsx";
+import ProtectRoute from "./components/ProtectRoute.jsx";
 
 function App() {
   return (
@@ -12,10 +15,14 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home />} />
+            <Route path="/suggestions" element={<Suggestions />} />
+            <Route path="/:foodId" element={<Recipe />} />
+
           <Route path="/about" element={<About />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/team" element={<Team />} />
+
         </Routes>
       </Router>
     </div>

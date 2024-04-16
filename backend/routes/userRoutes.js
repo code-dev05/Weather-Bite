@@ -13,13 +13,13 @@ import { isAuthenticatedUser } from "../middlewares/auth.js";
 
 const router = express.Router();
 
+router.route("/").get(getAllUsers);
 router.route("/register").post(registerUser);
 router.route("/login").post(loginUser);
 router.route("/logout").get(logoutUser);
-router.route("/").get(getAllUsers);
-router.route("/:userId").get(getUser);
 router.route("/ratings").post(isAuthenticatedUser, addRating)
-router.route("/location/:location").get(isAuthenticatedUser, getLocations)
-router.route("/weather/:placeId").get(isAuthenticatedUser, getWeather);
+router.route("/location/:location").get(getLocations)
+router.route("/weather/:placeId").get(getWeather);
+router.route("/:userId").get(getUser);
 
 export default router;

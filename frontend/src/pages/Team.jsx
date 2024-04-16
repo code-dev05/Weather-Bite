@@ -21,11 +21,6 @@ function Team() {
       "Third Year B.Tech Student",
       "images/aditya_katoch.png",
     ],
-    [
-      "Placeholder Text",
-      "Third Year B.Tech Student",
-      "images/aditya_katoch.png",
-    ],
   ];
 
   useEffect(() => {

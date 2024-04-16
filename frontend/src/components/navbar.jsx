@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
+import { useCookies } from "react-cookie";
 
 function Navbar() {
   const location = useLocation().pathname;
@@ -14,7 +15,16 @@ function Navbar() {
     if (location == "/about") navbar[1].style.color = "yellow";
     if (location == "/team") navbar[2].style.color = "yellow";
   }, [useLocation().pathname]);
-  
+
+  const navigate = useNavigate();
+  const [cookies, setCookies] = useCookies(["token"]);
+
+  const logout = () => {
+    setCookies("token", "");
+    window.localStorage.removeItem("userId");
+    navigate("/login");
+  };
+
   return (
     <div className="navbar">
       <div className="left">
@@ -32,7 +42,11 @@ function Navbar() {
         </Link>
       </div>
       <div className="right">
-        <Link to="/auth">Sign In</Link>
+        {!cookies.token ? (
+          <Link to="/auth">Sign In</Link>
+        ) : (
+          <Link to="/auth" onClick={logout}>Sign Out</Link> 
+        )}
       </div>
     </div>
   );
