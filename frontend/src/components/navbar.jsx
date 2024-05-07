@@ -12,7 +12,6 @@ function Navbar() {
       else elem.style.color = "#1F2937";
     });
     if (location == "/") navbar[0].style.color = "yellow";
-    if (location == "/about") navbar[1].style.color = "yellow";
     if (location == "/team") navbar[2].style.color = "yellow";
   }, [useLocation().pathname]);
 
@@ -30,9 +29,6 @@ function Navbar() {
       <div className="left">
         <Link to="/" id="navbar-home">
           Home
-        </Link>
-        <Link to="/about" id="navbar-about">
-          About
         </Link>
         <Link to="/team" id="navbar-team">
           Team
