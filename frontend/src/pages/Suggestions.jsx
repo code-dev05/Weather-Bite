@@ -12,13 +12,9 @@ function Suggestions() {
   useEffect(() => {
     const body = document.querySelector("body");
     body.style.backgroundImage = "url(images/suggestions.png)";
-    if (!cookies.token) {
-      alert("Sign in First!");
-      navigate("/auth");
-    }
     const fetchData = async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/api/v1/food/weather/${localStorage.getItem(
+        `/api/v1/food/weather/${localStorage.getItem(
           "weather"
         )}`
       );

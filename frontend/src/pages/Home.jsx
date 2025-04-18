@@ -25,7 +25,7 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/api/v1/user/location/${debouncedValue}`
+        `/api/v1/user/location/${debouncedValue}`
       );
       setLocations(data.predictions);
     };
@@ -48,7 +48,7 @@ function Home() {
     e.preventDefault();
     const fetchData = async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/api/v1/user/weather/${placeId}`
+        `/api/v1/user/weather/${placeId}`
       );
       console.log(data);
       localStorage.setItem("weather", handleWeather(data.code));

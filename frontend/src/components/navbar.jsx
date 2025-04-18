@@ -30,12 +30,6 @@ function Navbar() {
         <Link to="/" id="navbar-home">
           Home
         </Link>
-        <Link to="/team" id="navbar-team">
-          Team
-        </Link>
-        <Link to="/" id="navbar-spotlight">
-          Spotlight
-        </Link>
       </div>
       <div className="right">
         {!cookies.token ? (

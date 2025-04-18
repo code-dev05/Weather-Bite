@@ -12,13 +12,9 @@ function Recipe() {
   useEffect(() => {
     const body = document.querySelector("body");
     body.style.backgroundImage = "url(images/recipes.png)";
-    if (!cookies.token) {
-      alert("Sign in First!");
-      navigate("/auth");
-    }
     const fetchData = async () => {
       const { data } = await axios.get(
-        `http://localhost:3000/api/v1/food/${foodId}`
+        `/api/v1/food/${foodId}`
       );
       data.video = `https://www.youtube.com/embed/${data.video.split("=")[1]}`;
       data.nutrition = data.nutrition.split(", ");

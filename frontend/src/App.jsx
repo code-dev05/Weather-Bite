@@ -3,10 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/navbar.jsx";
 import Auth from "./pages/Auth.jsx";
-import Team from "./pages/Team.jsx";
 import Suggestions from "./pages/Suggestions.jsx";
 import Recipe from "./pages/Recipe.jsx";
-import ProtectRoute from "./components/ProtectRoute.jsx";
 
 function App() {
   return (
@@ -19,7 +17,6 @@ function App() {
           <Route path="/:foodId" element={<Recipe />} />
 
           <Route path="/auth" element={<Auth />} />
-          <Route path="/team" element={<Team />} />
         </Routes>
       </Router>
     </div>

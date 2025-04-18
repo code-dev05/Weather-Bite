@@ -29,23 +29,28 @@ const Login = ({ setIsLogin }) => {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [_, setCookies] = useCookies(["token"]);
-  const [isInvalid, setIsInvalid] = useState(false);
+
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!username || !password) {
+      setError("Username and password are required.");
+      return;
+    }
+
     try {
       const { data } = await axios.post(
-        "http://localhost:3000/api/v1/user/login",
+        "/api/v1/user/login",
         { username, password }
       );
       setCookies("token", data.token);
       window.localStorage.setItem("userId", data.user._id);
       navigate("/");
     } catch {
-      setIsInvalid(true)
-      setUsername("")
-      setPassword("")
-      return;
+      setError("Invalid Username or Password");
+      setUsername("");
+      setPassword("");
     }
   };
 
@@ -74,7 +79,7 @@ const Login = ({ setIsLogin }) => {
         Not a User?{" "}
         <span onClick={() => setIsLogin((prev) => !prev)}>Sign Up</span>
       </p>
-      {isInvalid && <p>Invalid Username or Password</p> }
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };
@@ -86,34 +91,37 @@ const Register = ({ setIsLogin }) => {
   const [confirm, setConfirm] = useState("");
   const navigate = useNavigate();
   const [_, setCookies] = useCookies(["token"]);
-  const [isInvalid, setIsInvalid] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (password != confirm) {
-      setIsInvalid(true);
-      setName("");
-      setUsername("");
-      setPassword("");
-      setConfirm("");
-      return;
-    }
-    try {
-      const { data } = await axios.post(
-        "http://localhost:3000/api/v1/user/register",
-        { name, username, password }
-      );
-      setCookies("token", data.token);
-      window.localStorage.setItem("userId", data.user._id);
-      navigate("/");
-    } catch {
-      setIsInvalid(true)
-      setUsername("")
-      setPassword("")
-      return;
-    }
-  };
+  const [error, setError] = useState("");
 
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!name || !username || !password || !confirm) {
+    setError("All fields are required.");
+    return;
+  }
+
+  if (password !== confirm) {
+    setError("Passwords do not match.");
+    return;
+  }
+
+  try {
+    const { data } = await axios.post(
+      "/api/v1/user/register",
+      { name, username, password }
+    );
+    setCookies("token", data.token);
+    window.localStorage.setItem("userId", data.user._id);
+    navigate("/");
+  } catch {
+    setError("Registration failed. Try a different username.");
+    setUsername("");
+    setPassword("");
+    setConfirm("");
+  }
+};
   return (
     <div className="register">
       <h1>Sign Up</h1>
@@ -152,8 +160,7 @@ const Register = ({ setIsLogin }) => {
         Account Already Created?{" "}
         <span onClick={() => setIsLogin((prev) => !prev)}>Sign In</span>
       </p>
-      {isInvalid && <p>Invalid Credentials</p> }
-
+      {error && <p className="error">{error}</p>}
     </div>
   );
 };

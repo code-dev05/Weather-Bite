@@ -44,7 +44,7 @@ console.log(rows);
 
 const pushData = async () => {
     for (let row of rows) {
-        const product = await axios.post("http://localhost:3000/api/v1/food/new", {
+        const product = await axios.post("/api/v1/food/new", {
             weather: row[0],
             foodName: row[1],
             description: row[2],
